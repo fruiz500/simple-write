@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Write</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="theme-color" content="#2b579a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Simple Write">
+<link rel="stylesheet" href="lib/katex/katex.min.css" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css'">
+<link rel="stylesheet" href="lib/hljs-github.css" id="hljs-css" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.10.0/styles/github.min.css'">
+<link rel="stylesheet" href="css/style.css">
+<style id="page-style"></style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-undo" viewBox="0 0 16 16"><path d="M4 6.5h6.5a3.25 3.25 0 0 1 0 6.5H6.5M6.5 3.5l-3 3 3 3"/></symbol>
+    <symbol id="i-redo" viewBox="0 0 16 16"><path d="M12 6.5H5.5a3.25 3.25 0 0 0 0 6.5h4M9.5 3.5l3 3-3 3"/></symbol>
+    <symbol id="i-left" viewBox="0 0 16 16"><path d="M2 3.5h12M2 6.5h8M2 9.5h12M2 12.5h8"/></symbol>
+    <symbol id="i-center" viewBox="0 0 16 16"><path d="M2 3.5h12M4 6.5h8M2 9.5h12M4 12.5h8"/></symbol>
+    <symbol id="i-right" viewBox="0 0 16 16"><path d="M2 3.5h12M6 6.5h8M2 9.5h12M6 12.5h8"/></symbol>
+    <symbol id="i-justify" viewBox="0 0 16 16"><path d="M2 3.5h12M2 6.5h12M2 9.5h12M2 12.5h12"/></symbol>
+    <symbol id="i-bullets" viewBox="0 0 16 16"><path d="M6 4h8M6 8h8M6 12h8"/><circle cx="3" cy="4" r="1" fill="currentColor"/><circle cx="3" cy="8" r="1" fill="currentColor"/><circle cx="3" cy="12" r="1" fill="currentColor"/></symbol>
+    <symbol id="i-numbers" viewBox="0 0 16 16"><path d="M6.5 4h7.5M6.5 8h7.5M6.5 12h7.5M2.5 2.5l1-.5v3.5M2 10.5c.3-.6 1.8-.8 1.8.2 0 .7-1.8 1.4-1.8 2.3h2" stroke-width="1.1"/></symbol>
+    <symbol id="i-check" viewBox="0 0 16 16"><rect x="1.5" y="2.5" width="4" height="4" rx=".5"/><path d="M2.3 4.5l1 1 1.5-2"/><rect x="1.5" y="9.5" width="4" height="4" rx=".5"/><path d="M8 4.5h6M8 11.5h6"/></symbol>
+    <symbol id="i-outdent" viewBox="0 0 16 16"><path d="M7 3.5h7M7 6.5h7M7 9.5h7M2 12.5h12M4.5 5l-2.5 2 2.5 2"/></symbol>
+    <symbol id="i-indent" viewBox="0 0 16 16"><path d="M7 3.5h7M7 6.5h7M7 9.5h7M2 12.5h12M2 5l2.5 2L2 9"/></symbol>
+    <symbol id="i-link" viewBox="0 0 16 16"><path d="M6.5 9.5l3-3M5.2 7.8 3.8 9.2a2.2 2.2 0 0 0 3.1 3.1l1.4-1.4M10.8 8.2l1.4-1.4a2.2 2.2 0 0 0-3.1-3.1L7.7 5.1"/></symbol>
+    <symbol id="i-image" viewBox="0 0 16 16"><rect x="1.5" y="2.5" width="13" height="11" rx="1"/><path d="M1.5 11.5l4-4 3 3 2-2 4 4"/><circle cx="11" cy="6" r="1.2"/></symbol>
+    <symbol id="i-table" viewBox="0 0 16 16"><rect x="1.5" y="2.5" width="13" height="11" rx="1"/><path d="M1.5 6.2h13M1.5 9.8h13M5.8 2.5v11M10.2 2.5v11"/></symbol>
+    <symbol id="i-comment" viewBox="0 0 16 16"><path d="M2 3h12v8H8l-3.5 3v-3H2z"/></symbol>
+    <symbol id="i-painter" viewBox="0 0 16 16"><rect x="2.5" y="1.5" width="10" height="4" rx=".8"/><path d="M12.5 3.5h1.5v3.5H8v2"/><rect x="6.8" y="9" width="2.4" height="5.5" rx=".6"/></symbol>
+    <symbol id="i-clear" viewBox="0 0 16 16"><path d="M3 3h8M7 3v10M10 9.5l4 4M14 9.5l-4 4"/></symbol>
+    <symbol id="i-outline" viewBox="0 0 16 16"><path d="M2 3.5h12M4.5 7h9.5M4.5 10h9.5M2 13h12"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 16 16"><path d="M13 9.8A5.5 5.5 0 0 1 6.2 3a5.5 5.5 0 1 0 6.8 6.8z"/></symbol>
+  </defs>
+</svg>
+
+<header class="titlebar">
+  <nav class="menus" aria-label="Menus">
+    <button class="menu-btn" data-menu="menu-file" type="button">File</button>
+    <button class="menu-btn" data-menu="menu-insert" type="button">Insert</button>
+    <button class="menu-btn" data-menu="menu-view" type="button">View</button>
+  </nav>
+  <div class="doc-title" title="Document name"><span id="doc-name">Untitled</span><span id="doc-state"></span></div>
+  <div class="tb-right">
+    <button id="v-toggle" class="viewbtn" type="button" title="Switch to the Markdown source (Ctrl+/)">Show Markdown</button>
+    <a class="help-link" href="help.html" target="_blank" rel="noopener">Help</a>
+  </div>
+</header>
+
+<div class="ribbon" id="ribbon" role="toolbar" aria-label="Formatting">
+  <div class="grp">
+    <button class="tb" data-cmd="undo" title="Undo (Ctrl+Z)" type="button"><svg><use href="#i-undo"/></svg></button>
+    <button class="tb" data-cmd="redo" title="Redo (Ctrl+Y)" type="button"><svg><use href="#i-redo"/></svg></button>
+  </div>
+  <div class="grp">
+    <select id="sel-style" title="Paragraph style" class="fmt">
+      <option value="p">Normal</option><option value="h1">Heading 1</option><option value="h2">Heading 2</option><option value="h3">Heading 3</option><option value="h4">Heading 4</option><option value="h5">Heading 5</option><option value="h6">Heading 6</option><option value="blockquote">Quote</option>
+    </select>
+    <select id="sel-font" title="Font of the selection" class="fmt">
+      <option value="">Font</option>
+    </select>
+    <select id="sel-size" title="Font size of the selection" class="fmt narrow">
+      <option value="">Size</option>
+    </select>
+  </div>
+  <div class="grp">
+    <button class="tb fmt" data-cmd="bold" title="Bold (Ctrl+B)" type="button"><b>B</b></button>
+    <button class="tb fmt" data-cmd="italic" title="Italic (Ctrl+I)" type="button"><i class="serif">I</i></button>
+    <button class="tb fmt" data-cmd="underline" title="Underline (Ctrl+U)" type="button"><u>U</u></button>
+    <button class="tb fmt" data-cmd="strikeThrough" title="Strikethrough" type="button"><s>S</s></button>
+    <button class="tb fmt" data-cmd="subscript" title="Subscript (Ctrl+=)" type="button">x<sub>2</sub></button>
+    <button class="tb fmt" data-cmd="superscript" title="Superscript (Ctrl+Shift+=)" type="button">x<sup>2</sup></button>
+    <button class="tb fmt mono" data-cmd="code" title="Inline code (Ctrl+`)" type="button">&lt;/&gt;</button>
+  </div>
+  <div class="grp">
+    <button class="tb fmt" id="btn-color" title="Text color" type="button"><span class="acolor">A<span class="bar" id="color-bar"></span></span>&#9662;</button>
+    <button class="tb fmt" id="btn-hilite" title="Highlight" type="button"><span class="hcolor"><span class="hl" id="hilite-bar">ab</span></span>&#9662;</button>
+    <button class="tb fmt" data-cmd="clear" title="Clear formatting (Ctrl+Space)" type="button"><svg><use href="#i-clear"/></svg></button>
+    <button class="tb fmt" data-cmd="painter" id="btn-painter" title="Format painter: copy the formatting at the cursor, then select text to apply it" type="button"><svg><use href="#i-painter"/></svg></button>
+  </div>
+  <div class="grp">
+    <button class="tb fmt" data-cmd="justifyLeft" title="Align left (Ctrl+L)" type="button"><svg><use href="#i-left"/></svg></button>
+    <button class="tb fmt" data-cmd="justifyCenter" title="Center (Ctrl+E)" type="button"><svg><use href="#i-center"/></svg></button>
+    <button class="tb fmt" data-cmd="justifyRight" title="Align right (Ctrl+R)" type="button"><svg><use href="#i-right"/></svg></button>
+    <button class="tb fmt" data-cmd="justifyFull" title="Justify (Ctrl+J)" type="button"><svg><use href="#i-justify"/></svg></button>
+  </div>
+  <div class="grp">
+    <button class="tb fmt" data-cmd="insertUnorderedList" title="Bulleted list (Ctrl+Shift+L)" type="button"><svg><use href="#i-bullets"/></svg></button>
+    <button class="tb fmt" data-cmd="insertOrderedList" title="Numbered list" type="button"><svg><use href="#i-numbers"/></svg></button>
+    <button class="tb fmt" data-cmd="checklist" title="Checklist" type="button"><svg><use href="#i-check"/></svg></button>
+    <button class="tb fmt" data-cmd="outdent" title="Decrease list level (Shift+Tab)" type="button"><svg><use href="#i-outdent"/></svg></button>
+    <button class="tb fmt" data-cmd="indent" title="Increase list level (Tab)" type="button"><svg><use href="#i-indent"/></svg></button>
+  </div>
+  <div class="grp">
+    <button class="tb fmt" data-cmd="link" title="Link (Ctrl+K)" type="button"><svg><use href="#i-link"/></svg></button>
+    <button class="tb fmt" data-cmd="image" title="Picture" type="button"><svg><use href="#i-image"/></svg></button>
+    <button class="tb fmt" data-cmd="table" title="Table" type="button"><svg><use href="#i-table"/></svg></button>
+    <button class="tb fmt big" data-cmd="equation" title="Equation (Alt+=)" type="button">&#8721;</button>
+    <button class="tb fmt big" data-cmd="symbol" title="Symbol" type="button">&Omega;</button>
+    <button class="tb fmt" data-cmd="footnote" title="Footnote (Ctrl+Alt+F)" type="button">ab<sup>1</sup></button>
+    <button class="tb big mic" id="btn-mic" title="Dictate (Ctrl+Shift+Space)" type="button"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2z"/></svg></button>
+    <button class="tb fmt big" id="btn-marks" data-cmd="marks" title="Show tabs and paragraph marks (Ctrl+Shift+8)" type="button">&para;</button>
+    <button class="tb fmt" data-cmd="comment" title="Comment (Ctrl+Alt+M)" type="button"><svg><use href="#i-comment"/></svg></button>
+  </div>
+</div>
+
+<main class="workspace">
+  <aside id="outline-pane" class="pane left" hidden>
+    <div class="pane-head">Outline<button class="x" data-close="outline" type="button" aria-label="Close">&#10005;</button></div>
+    <div id="outline-list" class="pane-body"></div>
+  </aside>
+  <div id="scroller" class="scroller">
+    <div id="ruler" class="ruler" hidden title="Ruler"></div>
+    <div id="page" class="page">
+      <div id="doc" class="doc" contenteditable="true" spellcheck="true" aria-label="Document"></div>
+      <div id="derived" class="derived" contenteditable="false"></div>
+    </div>
+    <textarea id="source" class="source" spellcheck="true" aria-label="Markdown source" hidden></textarea>
+  </div>
+  <aside id="comments-pane" class="pane right" hidden>
+    <div class="pane-head">Comments<button class="x" data-close="comments" type="button" aria-label="Close">&#10005;</button></div>
+    <div id="comments-list" class="pane-body"></div>
+  </aside>
+</main>
+
+<div id="aibar" class="aibar" hidden>
+  <button id="ai-model" class="ai-model" type="button">Set up AI&hellip;</button>
+  <span id="ai-scope" class="ai-scope">Document</span>
+  <input id="ai-prompt" type="text" autocomplete="off" placeholder="Ask AI to do something with the text (or leave empty to carry out [ai: ...] notes)" aria-label="AI instruction">
+  <select id="ai-target" title="Where the answer goes"><option value="tab">&rarr; New tab</option><option value="replace">&rarr; Replace document</option><option value="below">&rarr; Add at the end</option></select>
+  <button id="ai-send" class="ai-send" type="button">Send</button>
+  <span id="ai-status" class="ai-status"></span>
+</div>
+<footer class="status">
+  <span id="st-pages"></span><span id="st-words"></span><span class="grow" id="st-msg"></span>
+  <select id="sel-zoom" title="Zoom">
+    <option value="0.75">75%</option><option value="0.9">90%</option><option value="1" selected>100%</option><option value="1.1">110%</option><option value="1.25">125%</option><option value="1.5">150%</option><option value="2">200%</option><option value="fit">Fit width</option>
+  </select>
+  <input id="zoom-range" type="range" min="40" max="300" step="5" value="100" title="Zoom (Ctrl+wheel, Ctrl+Alt+Plus/Minus, Ctrl+Alt+0 for 100%)" aria-label="Zoom">
+</footer>
+
+<!-- menus -->
+<div class="menu" id="menu-file" hidden>
+  <button data-act="new" type="button">New<kbd>opens a new tab</kbd></button>
+  <button data-act="open" type="button">Open&hellip;<kbd>Ctrl+O</kbd></button>
+  <button data-act="openFolder" type="button">Open folder&hellip;</button>
+  <button data-act="drafts" type="button">Recent drafts&hellip;</button>
+  <hr>
+  <button data-act="save" type="button">Save<kbd>Ctrl+S</kbd></button>
+  <button data-act="saveAs" type="button">Save as&hellip;<kbd>Ctrl+Shift+S</kbd></button>
+  <button data-act="print" type="button">Print or save as PDF&hellip;<kbd>Ctrl+P</kbd></button>
+  <hr>
+  <button data-act="copyMd" type="button">Copy all as Markdown<kbd>for AI chats</kbd></button>
+  <button data-act="copyRich" type="button">Copy all as formatted text<kbd>for Word, email</kbd></button>
+  <hr>
+  <button data-act="pageSetup" type="button">Page and document setup&hellip;</button>
+  <button data-act="userName" type="button">Your name for comments&hellip;</button>
+</div>
+<div class="menu" id="menu-insert" hidden>
+  <button data-act="equation" type="button">Equation&hellip;<kbd>Alt+=</kbd></button>
+  <button data-act="symbol" type="button">Symbol&hellip;</button>
+  <button data-act="image" type="button">Picture&hellip;</button>
+  <button data-act="media" type="button">Video or audio&hellip;</button>
+  <button data-act="mediaurl" type="button">Video or audio from a web address&hellip;</button>
+  <button data-act="table" type="button">Table&hellip;</button>
+  <button data-act="csv" type="button" title="A .csv or .tsv file becomes a table">Table from a CSV file&hellip;</button>
+  <input type="file" id="csv-file" accept=".csv,.tsv,.txt,text/csv,text/tab-separated-values,text/plain" hidden>
+  <button data-act="link" type="button">Link&hellip;<kbd>Ctrl+K</kbd></button>
+  <hr>
+  <button data-act="footnote" type="button">Footnote&hellip;<kbd>Ctrl+Alt+F</kbd></button>
+  <button data-act="comment" type="button">Comment&hellip;<kbd>Ctrl+Alt+M</kbd></button>
+  <button data-act="cite" type="button">Citation&hellip;</button>
+  <button data-act="xref" type="button">Cross-reference&hellip;</button>
+  <button data-act="transcribe" type="button" title="Writes out the speech in a recording as text (uses the AI provider)">Speech from an audio file&hellip;</button>
+  <input type="file" id="media-file" accept="video/*,audio/*,.mp4,.m4v,.webm,.mov,.mp3,.m4a,.wav,.ogg,.aac,.flac" hidden>
+  <input type="file" id="audio-file" accept="audio/*,video/*,.m4a,.mp3,.wav,.ogg,.webm,.mp4" hidden>
+  <button data-act="aitag" type="button">Note to the AI<kbd>Ctrl+Alt+I</kbd></button>
+  <hr>
+  <button data-act="codeblock" type="button">Code block&hellip;</button>
+  <button data-act="hr" type="button">Horizontal line</button>
+  <button data-act="pagebreak" type="button">Page break<kbd>Ctrl+Enter</kbd></button>
+  <button data-act="toc" type="button">Table of contents</button>
+</div>
+<div class="menu" id="menu-view" hidden>
+  <button data-act="outline" type="button"><span class="ck" id="ck-outline"></span>Outline pane</button>
+  <button data-act="comments" type="button"><span class="ck" id="ck-comments"></span>Comments pane</button>
+  <button data-act="dark" type="button"><span class="ck" id="ck-dark"></span>Dark mode</button>
+  <button data-act="focus" type="button"><span class="ck" id="ck-focus"></span>Focus mode<kbd>Esc leaves</kbd></button>
+  <button data-act="dictate" type="button"><span class="ck" id="ck-mic"></span>Dictate<kbd>Ctrl+Shift+Space</kbd></button>
+  <button data-act="marks" type="button"><span class="ck" id="ck-marks"></span>Show tabs and paragraph marks<kbd>Ctrl+Shift+8</kbd></button>
+  <button data-act="super" type="button">Super-focus (full screen)<kbd>Ctrl+Shift+F</kbd></button>
+  <button data-act="present" type="button">Present from the start<kbd>F5</kbd></button>
+  <button data-act="presenthere" type="button">Present from this page<kbd>Shift+F5</kbd></button>
+  <button data-act="sorter" type="button">Slide sorter&hellip;</button>
+  <hr>
+  <button data-act="aibar" type="button"><span class="ck" id="ck-ai"></span>AI prompt line</button>
+  <button data-act="aisetup" type="button">AI provider and model&hellip;</button>
+  <hr>
+  <button data-act="ruler" type="button"><span class="ck" id="ck-ruler"></span>Ruler (margins and tab stops)</button>
+  <button data-act="columns" type="button"><span class="ck" id="ck-columns"></span>Two columns</button>
+  <button data-act="zoomin" type="button">Zoom in<kbd>Ctrl+Alt++</kbd></button>
+  <button data-act="zoomout" type="button">Zoom out<kbd>Ctrl+Alt+&minus;</kbd></button>
+  <button data-act="zoomfit" type="button">Fit page width</button>
+  <hr>
+  <button data-act="replace" type="button">Find and replace&hellip;<kbd>Ctrl+H</kbd></button>
+</div>
+<div class="menu palette" id="menu-color" hidden></div>
+<div class="menu palette" id="menu-hilite" hidden></div>
+
+<!-- floating bars -->
+<div id="tablebar" class="floatbar" hidden>
+  <button data-tbl="rowAbove" type="button" title="Insert row above">+Row&uarr;</button>
+  <button data-tbl="rowBelow" type="button" title="Insert row below">+Row&darr;</button>
+  <button data-tbl="colLeft" type="button" title="Insert column to the left">+Col&larr;</button>
+  <button data-tbl="colRight" type="button" title="Insert column to the right">+Col&rarr;</button>
+  <button data-tbl="delRow" type="button" title="Delete row">&minus;Row</button>
+  <button data-tbl="delCol" type="button" title="Delete column">&minus;Col</button>
+  <span class="sep"></span>
+  <button data-tbl="alignLeft" type="button" title="Align column left"><svg><use href="#i-left"/></svg></button>
+  <button data-tbl="alignCenter" type="button" title="Center column"><svg><use href="#i-center"/></svg></button>
+  <button data-tbl="alignRight" type="button" title="Align column right"><svg><use href="#i-right"/></svg></button>
+  <span class="sep"></span>
+  <button data-tbl="caption" type="button" title="Add or edit the table caption">Caption</button>
+  <button data-tbl="delTable" type="button" title="Delete table">Delete</button>
+</div>
+<div id="imghandles" class="imghandles" hidden><i data-c="nw"></i><i data-c="ne"></i><i data-c="sw"></i><i data-c="se"></i><i data-c="n" title="Drag to stretch"></i><i data-c="s" title="Drag to stretch"></i><i data-c="w" title="Drag to stretch"></i><i data-c="e" title="Drag to stretch"></i></div>
+<div id="mediabar" class="floatbar" hidden>
+  <button data-med="25" type="button">25%</button>
+  <button data-med="50" type="button">50%</button>
+  <button data-med="75" type="button">75%</button>
+  <button data-med="100" type="button">100%</button>
+  <button data-med="auto" type="button" title="Natural size">Auto</button>
+  <span class="sep vonly"></span>
+  <button data-med="rotl" class="vonly" type="button" title="Rotate left (the file itself is not changed)">&#8634;</button>
+  <button data-med="rotr" class="vonly" type="button" title="Rotate right (the file itself is not changed)">&#8635;</button>
+  <button data-med="crop" class="vonly" type="button" title="Crop, or trim black bars">Crop&hellip;</button>
+  <span class="sep"></span>
+  <button data-med="float:none" type="button" title="In line with the text">In line</button>
+  <button data-med="float:left" type="button" title="On the left, text flows on its right">Left</button>
+  <button data-med="float:right" type="button" title="On the right, text flows on its left">Right</button>
+  <button data-med="float:center" type="button" title="Alone on its line, centered">Center</button>
+  <span class="sep"></span>
+  <button data-med="delete" type="button">Delete</button>
+</div>
+<div id="imagebar" class="floatbar" hidden>
+  <button data-img="25" type="button">25%</button>
+  <button data-img="50" type="button">50%</button>
+  <button data-img="75" type="button">75%</button>
+  <button data-img="100" type="button">100%</button>
+  <button data-img="auto" type="button" title="Natural size and shape">Auto</button>
+  <span class="sep"></span>
+  <button data-img="rotl" type="button" title="Rotate left">&#8634;</button>
+  <button data-img="rotr" type="button" title="Rotate right">&#8635;</button>
+  <button data-img="flip" type="button" title="Flip (mirror image)">&#8646;</button>
+  <button data-img="crop" type="button" title="Crop">Crop&hellip;</button>
+  <span class="sep"></span>
+  <button data-img="float:none" type="button" title="In line with the text (a captioned picture stands alone, centered)">In line</button>
+  <button data-img="float:left" type="button" title="Picture on the left, text flows on its right">Left</button>
+  <button data-img="float:right" type="button" title="Picture on the right, text flows on its left">Right</button>
+  <button data-img="float:center" type="button" title="Picture alone on its line, centered">Center</button>
+  <span class="sep"></span>
+  <button data-img="edit" type="button">Caption&hellip;</button>
+  <button data-img="delete" type="button">Delete</button>
+</div>
+
+<!-- dialogs -->
+<dialog id="dlg-eq" class="dlg wide">
+  <form method="dialog">
+    <h2>Equation</h2>
+    <div class="eq-tabs" id="eq-tabs"></div>
+    <div class="eq-palette" id="eq-palette"></div>
+    <label class="lbl">LaTeX <span class="hint">(you can also paste an equation from Simple Solver, Word or a web page here)</span></label>
+    <textarea id="eq-tex" rows="4" spellcheck="false" class="mono"></textarea>
+    <div id="eq-preview" class="eq-preview"></div>
+    <div class="row">
+      <label><input type="checkbox" id="eq-display"> Display (on its own line)</label>
+      <label><input type="checkbox" id="eq-number"> Numbered</label>
+      <label class="eq-lbl">Label <input type="text" id="eq-label" size="14" placeholder="eq:energy"></label>
+    </div>
+    <div class="btns"><button value="cancel" type="submit">Cancel</button><button value="ok" type="submit" class="primary" id="eq-ok">Insert</button></div>
+  </form>
+</dialog>
+
+<dialog id="dlg-sym" class="dlg wide">
+  <form method="dialog">
+    <h2>Symbol</h2>
+    <div id="sym-grid" class="sym-grid"></div>
+    <div class="btns"><button value="cancel" type="submit">Close</button></div>
+  </form>
+</dialog>
+
+<dialog id="dlg-link" class="dlg">
+  <form method="dialog">
+    <h2>Link</h2>
+    <label class="lbl">Text to display</label><input type="text" id="link-text">
+    <label class="lbl">Address</label><input type="text" id="link-url" placeholder="https://">
+    <div class="btns"><button value="remove" type="submit" id="link-remove">Remove link</button><button value="cancel" type="submit">Cancel</button><button value="ok" type="submit" class="primary">OK</button></div>
+  </form>
+</dialog>
+
+<dialog id="dlg-img" class="dlg">
+  <form method="dialog">
+    <h2>Picture</h2>
+    <div class="row" id="img-source-row">
+      <button type="button" id="img-pick">Choose a file&hellip;</button>
+      <span id="img-picked" class="hint">or type an address:</span>
+    </div>
+    <input type="text" id="img-url" placeholder="https://… or images/name.png">
+    <label class="lbl">Caption <span class="hint">(leave empty for a picture without caption)</span></label>
+    <input type="text" id="img-cap">
+    <div class="row">
+      <label><input type="checkbox" id="img-number" checked> Numbered (Figure 1, 2, &hellip;)</label>
+      <label>Width <select id="img-width"><option value="">Natural</option><option>25%</option><option>33%</option><option>50%</option><option>66%</option><option>75%</option><option>100%</option></select></label>
+    </div>
+    <input type="file" id="img-file" accept="image/*" hidden>
+    <div class="btns"><button value="cancel" type="submit">Cancel</button><button value="ok" type="submit" class="primary" id="img-ok">Insert</button></div>
+  </form>
+</dialog>
+
+<dialog id="dlg-table" class="dlg">
+  <form method="dialog">
+    <h2>Table</h2>
+    <div class="row"><label>Columns <input type="number" id="tbl-cols" min="1" max="20" value="3"></label><label>Rows <input type="number" id="tbl-rows" min="1" max="200" value="3"></label></div>
+    <label class="lbl">Caption <span class="hint">(optional)</span></label><input type="text" id="tbl-cap">
+    <label><input type="checkbox" id="tbl-number" checked> Numbered (Table 1, 2, &hellip;)</label>
+    <p class="hint">The first row is the header row. Markdown tables cannot merge cells.</p>
+    <div class="btns"><button value="cancel" type="submit">Cancel</button><button value="ok" type="submit" class="primary">Insert</button></div>
+  </form>
+</dialog>
+
+<dialog id="dlg-text" class="dlg">
+  <form method="dialog">
+    <h2 id="text-title">Footnote</h2>
+    <p class="hint" id="text-hint"></p>
+    <textarea id="text-val" rows="4"></textarea>
+    <div class="btns"><button value="delete" type="submit" id="text-del">Delete</button><button value="cancel" type="submit">Cancel</button><button value="ok" type="submit" class="primary">OK</button></div>
+  </form>
+</dialog>
+
+<dialog id="dlg-code" class="dlg wide">
+  <form method="dialog">
+    <h2>Code block</h2>
+    <div class="row"><label>Language <input type="text" id="code-lang" list="code-langs" size="14" placeholder="python"></label>
+      <datalist id="code-langs"><option>python</option><option>javascript</option><option>matlab</option><option>c</option><option>cpp</option><option>java</option><option>bash</option><option>json</option><option>html</option><option>css</option><option>latex</option><option>r</option><option>sql</option><option>fortran</option><option>plaintext</option></datalist>
+    </div>
+    <textarea id="code-text" rows="12" spellcheck="false" class="mono"></textarea>
+    <div class="btns"><button value="cancel" type="submit">Cancel</button><button value="ok" type="submit" class="primary">OK</button></div>
+  </form>
+</dialog>
+
+<dialog id="dlg-cite" class="dlg wide">
+  <form method="dialog">
+    <h2>Citation</h2>
+    <input type="search" id="cite-filter" placeholder="Search references">
+    <div id="cite-list" class="pick-list"></div>
+    <details id="cite-add"><summary>Add references (BibTeX)</summary>
+      <p class="hint">Paste one or more BibTeX entries (Google Scholar: &ldquo;Cite&rdquo; &rarr; &ldquo;BibTeX&rdquo;), or load a .bib file.</p>
+      <textarea id="cite-bib" rows="6" spellcheck="false" class="mono"></textarea>
+      <div class="row"><button type="button" id="cite-add-btn">Add entries</button><button type="button" id="cite-load">Load .bib file&hellip;</button><input type="file" id="cite-file" accept=".bib,text/plain" hidden></div>
+    </details>
+    <div class="btns"><button value="cancel" type="submit">Cancel</button><button value="ok" type="submit" class="primary">Insert</button></div>
+  </form>
+</dialog>
+
+<dialog id="dlg-xref" class="dlg wide">
+  <form method="dialog">
+    <h2>Cross-reference</h2>
+    <p class="hint">Pick what to refer to. Its number is kept up to date automatically.</p>
+    <div id="xref-list" class="pick-list"></div>
+    <div class="btns"><button value="cancel" type="submit">Cancel</button><button value="ok" type="submit" class="primary">Insert</button></div>
+  </form>
+</dialog>
+
+<dialog id="dlg-ai" class="dlg">
+  <form method="dialog">
+    <h2>AI provider and model</h2>
+    <div class="grid2">
+      <label>Provider</label><select id="ai-provider"></select>
+      <label id="ai-key-lbl">API key</label><div id="ai-key-row" class="row"><input type="password" id="ai-key" autocomplete="off" spellcheck="false"><button type="button" id="ai-showkey" title="Show or hide the key">Show</button><button type="button" id="ai-forget" title="Remove the key from this browser">Forget</button></div>
+      <label id="ai-url-lbl">Server address</label><div id="ai-url-row" class="row"><input type="text" id="ai-url" spellcheck="false"></div>
+      <label id="ai-model-lbl">Model</label><div id="ai-model-row" class="row"><input type="text" id="ai-model-in" list="ai-models" spellcheck="false" placeholder="type or pick"><datalist id="ai-models"></datalist><button type="button" id="ai-reload" title="Ask the provider for its models again">Refresh list</button></div>
+    </div>
+    <p class="hint" id="ai-mstatus"></p>
+    <div class="grid2"><label>Dictation</label><select id="ai-dict"><option value="browser">The browser (live, free)</option><option value="ai">This AI provider (more accurate, writes math; text appears when you stop)</option></select></div>
+    <p class="hint"><span id="ai-hint"></span> <a id="ai-keylink" target="_blank" rel="noopener">Get a key</a></p>
+    <div class="btns"><button value="cancel" type="submit">Cancel</button><button value="ok" type="submit" class="primary">OK</button></div>
+  </form>
+</dialog>
+<dialog id="dlg-crop" class="dlg wide">
+  <form method="dialog">
+    <h2>Crop the picture</h2>
+    <p class="hint">Drag the corners or the box, or drag across the picture to draw a new box.</p>
+    <div style="text-align:center"><div id="crop-wrap" class="crop-wrap"><img id="crop-img" alt="" draggable="false"><div id="crop-box" class="crop-box"><i data-k="nw"></i><i data-k="ne"></i><i data-k="sw"></i><i data-k="se"></i></div></div></div>
+    <p class="hint" id="crop-info"></p>
+    <div class="btns"><button type="button" id="crop-all" style="margin-right:auto">Whole picture</button><button type="button" id="crop-auto" hidden style="margin-right:auto">Trim black bars</button><button value="cancel" type="submit">Cancel</button><button value="ok" type="submit" class="primary">Crop</button></div>
+  </form>
+</dialog>
+<dialog id="dlg-setup" class="dlg">
+  <form method="dialog">
+    <h2>Page and document setup</h2>
+    <div class="grid2">
+      <label>Units</label><select id="su-units"><option value="in">Inches</option><option value="cm">Centimeters</option></select>
+      <label>Paper</label><select id="su-paper"><option value="letter">Letter (8.5 &times; 11 in)</option><option value="a4">A4 (210 &times; 297 mm)</option><option value="screen">Screen 16:9 (slides)</option><option value="screen43">Screen 4:3 (slides)</option></select>
+      <label>Margins</label><select id="su-margin"></select>
+      <label>Columns</label><select id="su-cols"><option value="1">One</option><option value="2">Two</option></select>
+      <label>Font</label><select id="su-font"></select>
+      <label>Font size</label><select id="su-size"><option>10pt</option><option>11pt</option><option>12pt</option><option>14pt</option><option>18pt</option><option>20pt</option><option>24pt</option><option>28pt</option><option>32pt</option></select>
+      <label>Line spacing</label><select id="su-line"><option value="1">Single</option><option value="1.15">1.15</option><option value="1.5">1.5</option><option value="2">Double</option></select>
+      <label>Header text</label><input type="text" id="su-header" placeholder="(none)">
+      <label>Footer text</label><input type="text" id="su-footer" placeholder="(none)">
+    </div>
+    <p class="hint">In the header and footer, <b>left | center | right</b> puts text in three places, and <code>{page}</code> <code>{pages}</code> <code>{title}</code> <code>{author}</code> <code>{date}</code> are filled in.</p>
+    <label><input type="checkbox" id="su-pagenum"> Page numbers at the bottom</label>
+    <label><input type="checkbox" id="su-skipfirst"> Nothing in the header and footer on the first page</label>
+    <label><input type="checkbox" id="su-numsec"> Number the headings (1, 1.1, 1.2, &hellip;)</label>
+    <details class="slides-opts"><summary>Slides (for Present)</summary>
+      <div class="grid2">
+        <label>Background</label><select id="su-bg"><option value="plain">Plain white</option><option value="dark">Dark</option><option value="navy">Navy</option><option value="sepia">Sepia</option></select>
+        <label>Or a color / picture</label><span class="fade-row"><input type="text" id="su-bgtext" placeholder="#102a43 or a picture"> <button type="button" id="su-bgpick">Choose picture&hellip;</button></span><input type="file" id="su-bgfile" accept="image/*" hidden>
+        <label></label><label class="inl"><input type="checkbox" id="su-bgsmall"> Reduce the picture's size (smaller file; not for logos or frames)</label>
+        <label>Picture fits the page</label><select id="su-fit"><option value="fill">Fill (edges may be cropped)</option><option value="fit">Fit whole picture</option><option value="stretch">Stretch to the page</option></select>
+        <label>Fade the picture</label><span class="fade-row"><input type="range" id="su-fade" min="0" max="95" step="5"> <select id="su-fadetone"><option value="dark">toward dark</option><option value="light">toward light</option></select></span>
+        <label>Transition</label><select id="su-trans"><option value="fade">Fade</option><option value="slide">Slide</option><option value="none">None</option></select>
+      </div>
+      <div class="bg-prev-wrap"><div id="su-prev" class="bg-prev"><div class="bp-in"><b>Sample heading</b><br>Sample text, to judge the contrast</div></div></div>
+      <label><input type="checkbox" id="su-reveal"> Show list items one at a time</label>
+    </details>
+    <p class="hint">These settings are stored at the top of the Markdown file, in the form Pandoc uses.</p>
+    <div class="btns"><button value="cancel" type="submit">Cancel</button><button value="ok" type="submit" class="primary">OK</button></div>
+  </form>
+</dialog>
+
+<dialog id="dlg-replace" class="dlg">
+  <form method="dialog">
+    <h2>Find and replace</h2>
+    <label class="lbl">Find</label><input type="text" id="rp-find">
+    <label class="lbl">Replace with</label><input type="text" id="rp-with">
+    <div class="row"><label><input type="checkbox" id="rp-case"> Match case</label><label><input type="checkbox" id="rp-word"> Whole words</label></div>
+    <p class="hint" id="rp-msg"></p>
+    <div class="btns"><button type="button" id="rp-next">Find next</button><button type="button" id="rp-one">Replace</button><button type="button" id="rp-all">Replace all</button><button value="cancel" type="submit">Close</button></div>
+  </form>
+</dialog>
+
+<dialog id="dlg-save" class="dlg">
+  <form method="dialog">
+    <h2>Save as</h2>
+    <label class="lbl">File name</label><input type="text" id="sv-name">
+    <div class="radios" id="sv-formats">
+      <label><input type="radio" name="sv-fmt" value="md" checked> Markdown (.md) <span class="hint">pictures go into an images folder (or a .zip)</span></label>
+      <label><input type="radio" name="sv-fmt" value="zip"> Everything in one .zip <span class="hint">document, pictures, video, audio; open the .zip to load it again</span></label>
+      <label><input type="radio" name="sv-fmt" value="docx"> Word document (.docx)</label>
+      <label><input type="radio" name="sv-fmt" value="pdf"> PDF <span class="hint">through the print window</span></label>
+      <label><input type="radio" name="sv-fmt" value="html"> Web page (.html) <span class="hint">one file, pictures included</span></label>
+      <label><input type="radio" name="sv-fmt" value="txt"> Plain text (.txt)</label>
+    </div>
+    <div class="btns"><button value="cancel" type="submit">Cancel</button><button value="ok" type="submit" class="primary">Save</button></div>
+  </form>
+</dialog>
+
+<dialog id="dlg-list" class="dlg wide">
+  <form method="dialog">
+    <h2 id="list-title">Recent drafts</h2>
+    <p class="hint" id="list-hint"></p>
+    <div id="list-items" class="pick-list"></div>
+    <div class="btns"><button value="cancel" type="submit">Close</button></div>
+  </form>
+</dialog>
+
+<dialog id="dlg-ask" class="dlg">
+  <form method="dialog">
+    <h2 id="ask-title">Question</h2>
+    <p id="ask-text"></p>
+    <input type="text" id="ask-input" hidden>
+    <div class="btns" id="ask-btns"></div>
+  </form>
+</dialog>
+
+<input type="file" id="open-file" multiple hidden accept=".md,.markdown,.txt,.docx,.html,.htm,.zip,.bib,image/*,text/markdown,text/plain,text/html">
+<input type="file" id="open-folder" webkitdirectory multiple hidden>
+
+<script src="lib/marked.min.js"></script>
+<script>window.marked || document.write('<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"><\/script>')</script>
+<script src="lib/purify.min.js"></script>
+<script>window.DOMPurify || document.write('<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"><\/script>')</script>
+<script src="lib/katex/katex.min.js"></script>
+<script>window.katex || document.write('<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"><\/script>')</script>
+<script src="lib/turndown.js"></script>
+<script>window.TurndownService || document.write('<script src="https://cdn.jsdelivr.net/npm/turndown@7.2.0/dist/turndown.js"><\/script>')</script>
+<script src="js/util.js"></script>
+<script src="js/bib.js"></script>
+<script src="js/render.js"></script>
+<script src="js/headfoot.js"></script>
+<script src="js/paginate.js"></script>
+<script src="js/tomd.js"></script>
+<script src="js/editor.js"></script>
+<script src="js/dialogs.js"></script>
+<script src="js/files.js"></script>
+<script src="js/docx.js"></script>
+<script src="js/import.js"></script>
+<script src="js/docxread.js"></script>
+<script src="js/shapes.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/picture.js"></script>
+<script src="js/csv.js"></script>
+<script src="js/dictate.js"></script>
+<script src="js/media.js"></script>
+<script src="js/present.js"></script>
+<script src="js/sorter.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

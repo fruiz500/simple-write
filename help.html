@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Write – Help</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+  body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 52rem; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; line-height: 1.6; color: #222; }
+  h1 { color: #2b579a; margin-bottom: .2rem; } h2 { color: #2b579a; margin-top: 2.2rem; border-bottom: 1px solid #ddd; padding-bottom: .2rem; } h3 { margin-bottom: .2rem; }
+  code, kbd { background: #f2f2f2; border-radius: 3px; padding: 0 .3em; font-size: .9em; } kbd { border: 1px solid #ccc; }
+  pre { background: #f6f8fa; border-radius: 4px; padding: .7rem .9rem; overflow-x: auto; font-size: .88em; line-height: 1.45; }
+  table { border-collapse: collapse; margin: .5rem 0; } th, td { border: 1px solid #ccc; padding: .3rem .6rem; text-align: left; vertical-align: top; } th { background: #f2f2f2; }
+  .lead { color: #555; font-size: 1.05rem; } .note { background: #fff8e1; border-left: 4px solid #f0b429; padding: .5rem .8rem; }
+  nav ul { columns: 2; }
+  footer { margin-top: 3rem; color: #777; font-size: .9rem; }
+</style>
+</head>
+<body>
+<h1>Simple Write</h1>
+<p class="lead">A word processor that keeps your work as Markdown: write as in Word, with equations, figures, tables, footnotes, comments, citations and cross-references, and get files that any Markdown tool, AI chat or Pandoc can read. It reads and writes Word (.docx) files too.</p>
+
+<nav><ul>
+  <li><a href="#start">Getting started</a></li>
+  <li><a href="#files">Files: open, save, export</a></li>
+  <li><a href="#format">Formatting</a></li>
+  <li><a href="#math">Equations</a></li>
+  <li><a href="#objects">Pictures, tables, code</a></li>
+  <li><a href="#refs">Numbering, cross-references, citations</a></li>
+  <li><a href="#notes">Footnotes and comments</a></li>
+  <li><a href="#page">Page setup and printing</a></li>
+  <li><a href="#headers">Headers and footers</a></li>
+  <li><a href="#install">Install and offline use</a></li>
+  <li><a href="#slides">Slides</a></li>
+  <li><a href="#dictate">Dictation</a></li>
+  <li><a href="#ai">The AI prompt line</a></li>
+  <li><a href="#ainotes">Notes to the AI inside the text</a></li>
+  <li><a href="#paste">Copying and pasting</a></li>
+  <li><a href="#keys">Keyboard shortcuts</a></li>
+  <li><a href="#markdown">What the Markdown looks like</a></li>
+  <li><a href="#limits">What is left out, and why</a></li>
+</ul></nav>
+
+<h2 id="start">Getting started</h2>
+<p>Type in the page as in any word processor. The <b>Document</b> / <b>Markdown</b> switch at the top right (<kbd>Ctrl</kbd>+<kbd>/</kbd>) shows the same text as Markdown source, where you can also edit; switching back shows the result.</p>
+<p>Each browser tab is one document. To work on two documents, use <b>File ▸ New</b> (a new tab) and cut and paste between tabs freely: equations, footnotes and the rest survive the trip.</p>
+<p>Everything you type is kept in this browser as a <b>draft</b>, so reloading the page or closing the tab by accident loses nothing. Earlier documents are listed in <b>File ▸ Recent drafts</b>. Drafts live only in this browser: save to a file to keep your work for good or to move it to another computer.</p>
+<p>Markdown shortcuts also work while typing: <code># </code> to <code>###### </code> at the start of a paragraph make headings, <code>- </code> a bulleted list, <code>1. </code> a numbered list, <code>&gt; </code> a quote, <code>[ ] </code> a checklist, and <code>$x^2$</code> becomes an equation as soon as you type the closing dollar sign.</p>
+
+<h2 id="files">Files: open, save, export</h2>
+<table>
+  <tr><th>Format</th><th>Open</th><th>Save</th><th>Notes</th></tr>
+  <tr><td>Markdown (.md)</td><td>yes</td><td>yes</td><td>The native format. Pictures are saved as separate files in an <code>images</code> folder and references in <code>references.bib</code>, next to the document.</td></tr>
+  <tr><td>Word (.docx)</td><td>yes</td><td>yes</td><td>Equations become real Word equations, footnotes and comments real ones. See the notes below.</td></tr>
+  <tr><td>PDF</td><td>save only</td><td>yes</td><td>Saving uses the print window: choose &ldquo;Save as PDF&rdquo;. Simple Write does not open PDF files; open the original Word or Markdown file instead.</td></tr>
+  <tr><td>Web page (.html)</td><td>yes</td><td>yes</td><td>One file with pictures inside and equations as MathML, readable in any browser.</td></tr>
+  <tr><td>Text (.txt)</td><td>yes (read as Markdown)</td><td>yes</td><td>Saving gives plain text, with equations written in LaTeX.</td></tr>
+  <tr><td>Zip (.zip)</td><td>yes</td><td>yes</td><td>A document with its pictures in one file (used when the browser cannot write to a folder).</td></tr>
+</table>
+<h3>Saving a document with pictures</h3>
+<p>In Chrome and Edge, <b>Save</b> asks for a folder the first time and writes <code>name.md</code>, the <code>images</code> folder and <code>references.bib</code> there; later saves (<kbd>Ctrl</kbd>+<kbd>S</kbd>) update the same files. Other browsers download a .zip with everything inside, which <b>Open</b> reads back.</p>
+<h3>Everything in one .zip</h3>
+<p><b>Save as &#9656; Everything in one .zip</b> packs the document with its pictures, video, audio and references in a single file, so nothing gets separated when you move or send it. <b>Open</b> the .zip (or drop it on the window) to load it again.</p>
+<h3>Opening a document with pictures</h3>
+<p>Use <b>File ▸ Open folder</b> and pick the folder that holds the .md file and its <code>images</code> folder, or select the .md file together with its pictures in the Open window, or open the .zip.</p>
+<h3>Word files</h3>
+<ul>
+  <li>Word files keep headings, lists, tables, pictures, captions, links, footnotes, comments and equations. The table of contents becomes a Word contents field (right-click it in Word and choose <i>Update Field</i>).</li>
+  <li>Opening a Word file brings back text, headings, lists, tables, pictures, footnotes and equations. Shapes and text boxes come in as their text, and charts as a table of their data; other drawings are replaced by a note. Citations and cross-references come back as plain text, keep the .md file as your master copy and send .docx copies.</li>
+  <li>Numbered equations are written the way Word numbers them (equation#(1)).</li>
+</ul>
+
+<h2 id="format">Formatting</h2>
+<p>The toolbar works as in Word. Bold, italic, strikethrough, inline code, headings, lists, quotes and links are plain Markdown. Underline, subscript, superscript, color, highlight, font, size and paragraph alignment are kept as small pieces of HTML inside the Markdown, which most Markdown programs display; they are dropped by programs that only understand plain text.</p>
+<p>The <b>format painter</b> copies the formatting at the cursor: press it, then select the text that should get the same formatting. <b>Clear formatting</b> (<kbd>Ctrl</kbd>+<kbd>Space</kbd>) removes character formatting from the selection.</p>
+<p>Font, size and line spacing for the whole document are set in <b>File ▸ Page and document setup</b>.</p>
+
+<h2 id="math">Equations</h2>
+<p>Press <b>∑</b> or <kbd>Alt</kbd>+<kbd>=</kbd>. Type LaTeX, or click the palette (structures, Greek letters, operators, arrows, accents, and a tab of engineering symbols); the preview shows the result as you type. Tick <b>Display</b> for an equation on its own line and <b>Numbered</b> to give it a number that cross-references can use. Double-click an equation to change it.</p>
+<p>In the text you can also type <code>$...$</code> directly. Equations pasted from Simple Solver, Word, Wikipedia, AI chats or other KaTeX and MathJax pages are converted to LaTeX: exact when the source carries LaTeX, as well as possible from MathML otherwise.</p>
+<p>A dollar sign followed by a digit or a space, as in $5, stays a dollar sign. Supported LaTeX: <a href="https://katex.org/docs/supported.html" target="_blank" rel="noopener">KaTeX functions</a>.</p>
+
+<h2 id="objects">Pictures, tables, code</h2>
+<p>Equations, pictures, code blocks, footnote marks, citations and cross-references are <b>objects</b>: click one to select it (Delete removes it, the arrow keys move past it), double-click or press Enter to edit it.</p>
+<ul>
+  <li><b>Pictures</b>: paste, drag them in, or use the picture button. A picture with a caption becomes a figure, numbered if you tick <i>Numbered</i>. Click a picture to get corner handles (drag to resize freely, the shape is kept), width buttons, and text-wrapping buttons: <i>In line</i>, <i>Left</i> and <i>Right</i> (text flows around it) and <i>Center</i> (alone on its line). The side handles stretch it (width or height alone), and <i>Auto</i> or a percentage gives back its own shape. The bar also rotates it left or right, flips it, and crops it (drag a box over the picture). Rotating, flipping and cropping save a new copy of the picture in the <code>images</code> folder, so Word and PDF show the same; <kbd>Ctrl</kbd>+<kbd>Z</kbd> brings the old one back. The Markdown records the layout as <code>{width=320px height=180px float=left}</code>.</li>
+  <li><b>Tables</b>: the first row is the header. While the cursor is in a table, a small bar above it adds and deletes rows and columns, aligns columns and edits the caption. <kbd>Tab</kbd> moves to the next cell and adds a row at the end.</li>
+  <li><b>Tables from a spreadsheet file</b>: <b>Insert &#9656; Table from a CSV file</b> turns a .csv or .tsv file (save one from Excel, Numbers or Google Sheets) into a table at the cursor. The first row becomes the header; comma, semicolon and tab files are recognized, and columns of numbers are right-aligned. It inserts the first 1,000 rows. Formulas and formatting stay behind in the spreadsheet.</li>
+  <li><b>Code blocks</b> (Insert ▸ Code block) are colored by language.</li>
+  <li><b>Page breaks</b> (<kbd>Ctrl</kbd>+<kbd>Enter</kbd>) and the <b>table of contents</b> are in the Insert menu; the contents update by themselves.</li>
+</ul>
+
+<h3>Video and audio</h3>
+<p><b>Insert ▸ Video or audio…</b> (or drop the file on the window) puts the file in the document with the browser's own player, so it plays wherever the browser can play that format: MP4 (H.264), WebM and MP3 are safe choices; some phone .mov files are not. The file is kept in a <code>media</code> folder like pictures are, and the Markdown holds a plain <code>&lt;video src="media/clip.mp4" controls&gt;&lt;/video&gt;</code> line. <b>Save</b> puts the files in the folder (or the .zip) with the document. In <b>Present</b> the player works on the slide (click its controls; the slide does not advance), and it stops when you move on. Word and plain-text files get a line such as [Video: clip.mp4] instead, because they cannot play it; a web page embeds files under 10 MB. The file stays in memory while you edit, so avoid files of many hundreds of MB.</p>
+<p><b>Insert ▸ Video or audio from a web address…</b> takes a link instead of a file. A link to a video or audio file (<code>.mp4</code>, <code>.webm</code>, <code>.mp3</code>, &hellip;) gets the ordinary player, with the usual size, rotate, crop and position controls. A YouTube or Vimeo link becomes an embedded player that can be resized and positioned but not rotated or cropped. Nothing is copied into the document or the .zip: it plays only while you are online and only if the website allows it, and Word, text and print show just the address. For a presentation where a video must not fail, insert the file itself.</p>
+<p><b>YouTube &ldquo;Error 153&rdquo; (black player):</b> YouTube plays an embedded video only when the page comes from a web address. Opened straight from a folder (<code>file://</code>), the page has no address to show YouTube, so it refuses. Use the app from its https address (or a local server such as <code>python3 -m http.server</code> and <code>http://localhost:8000</code>); the <b>Open in a new tab</b> link under every online player is the fallback.</p>
+<p>Click a video or audio to get its bar: <b>25% &hellip; 100%</b> and <b>Auto</b> set the size, and dragging a corner handle resizes it. For video, the rotate buttons turn it by 90&deg; (for a clip shot upright on a phone) and <b>Crop&hellip;</b> lets you drag a box over a frame, or press <b>Trim black bars</b> to find the bars and cut them off. These only change how the video is <em>shown</em>: the file itself is not re-encoded, so nothing is lost and undo is exact. <b>Left</b> and <b>Right</b> put the player beside the text, which flows around it (as with pictures); <b>Center</b> keeps it alone on its line. They are stored as <code>width</code>, <code>data-float</code>, <code>data-rotate</code> and <code>data-crop</code> on the video line, and apply in the editor and in Present, not in other programs.</p>
+
+<h2 id="refs">Numbering, cross-references, citations</h2>
+<p>Figures and tables with <i>Numbered</i> ticked, and numbered equations, are numbered in order and renumbered whenever you add, move or delete one. <b>Insert ▸ Cross-reference</b> lists everything you can refer to (also headings) and inserts &ldquo;Figure 2&rdquo;, &ldquo;Table 1&rdquo;, &ldquo;Eq. (3)&rdquo; or &ldquo;Section 2.1&rdquo;, kept up to date.</p>
+<p><b>Insert ▸ Citation</b> inserts numbered citations like [1] or [2–4] and builds the <b>References</b> list at the end. Add references by pasting BibTeX entries (in Google Scholar: <i>Cite ▸ BibTeX</i>) or loading a .bib file. The references are saved as <code>references.bib</code> beside the document.</p>
+<p>Heading numbers (1, 1.1, 1.2&hellip;) are switched on in <b>Page and document setup</b>.</p>
+
+<h2 id="notes">Footnotes and comments</h2>
+<p><b>Footnotes</b> (<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>F</kbd>) are numbered by themselves and listed at the end of the page as notes; Word files get real footnotes at the bottom of the page.</p>
+<p><b>Comments</b> (<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>M</kbd>): select some text and type the comment. Comments show in the comments pane (View menu), with your name (File ▸ Your name for comments). They are not printed. In Word files they become real Word comments.</p>
+
+<h2 id="page">Page setup and printing</h2>
+<p><b>View ▸ Ruler</b> shows a ruler above the page. Drag the triangles to set the left and right margins. Click the ruler to add a tab stop, drag a stop to move it, double-click it to remove it. <kbd>Tab</kbd> in a paragraph inserts a tab that jumps to the next stop (every half inch past the last one you set). Margins and tab stops are document settings, stored at the top of the Markdown file; tabs are stored as <code>&amp;#9;</code>. <b>View ▸ Two columns</b> (or Page setup) lays the text out in two columns, with level-1 headings spanning both; in the Markdown this is <code>classoption: twocolumn</code>.</p>
+<p><b>Zoom</b>: the slider and menu in the status bar, <b>Fit width</b>, <kbd>Ctrl</kbd>+wheel, <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>+</kbd> / <kbd>&minus;</kbd>, and <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>0</kbd> for 100%.</p>
+<p><b>File ▸ Page and document setup</b> sets the paper (Letter, A4, or a screen size for slides), margins, font, font size, line spacing, a header text, page numbers and heading numbers. The page on screen follows these settings; <b>Print</b> (<kbd>Ctrl</kbd>+<kbd>P</kbd>) and Word files use them too. Page numbers in print need a recent Chrome or Edge.</p>
+<p>The <b>View</b> menu has the outline pane (click a heading to go there), the comments pane, dark mode and focus mode (no toolbars; <kbd>Esc</kbd> leaves). <b>Super-focus</b> (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd>) is focus mode in full screen, so the browser's own toolbars go away too; <kbd>Esc</kbd> leaves it. The button at the top right switches between the formatted document and the Markdown source (<kbd>Ctrl</kbd>+<kbd>/</kbd>). Zoom is at the bottom right. The &para; button (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>8</kbd>) shows tabs and paragraph ends. Switching views keeps your cursor at the same place. Tabs delete with Backspace or Delete. <b>Page setup</b> has an inches/centimeters switch at the top; it changes the margin choices and the ruler, and is remembered in your browser (the file itself just records the margins in the unit you chose).</p>
+
+<h2 id="headers">Headers and footers</h2>
+<p>In <b>File ▸ Page and document setup</b>, <b>Header text</b> and <b>Footer text</b> appear on every page, and <b>Page numbers at the bottom</b> adds the page number. Write <code>left | center | right</code> to put text in three places, for example <code>{title} | | Thermo 301</code>. These are filled in automatically: <code>{page}</code>, <code>{pages}</code> (the number of pages), <code>{title}</code> (the <code>title</code> in the front matter, or the first heading), <code>{author}</code> and <code>{date}</code> (the <code>date</code> in the front matter, or today). <b>Nothing in the header and footer on the first page</b> leaves page 1 clean. They are stored in the front matter as <code>header</code>, <code>footer</code> and <code>skipfirst</code>.</p>
+<p>On screen the page is cut where the text runs past the bottom margin, like the printer does, with a gap between the sheets as at a page break. The page numbers, headers and footers follow those cuts (and your own page breaks), and the status bar shows the number of pages. A paragraph, list item, picture or table is never split between two sheets: one that does not fit moves whole to the next page, and a heading moves with the text after it. So the screen may show a few more pages than a printer or Word does; print, PDF (<kbd>Ctrl</kbd>+<kbd>P</kbd>) and Word files show the exact page numbers. Slides (the screen paper sizes) and two-column pages are not cut automatically: there a page is what you separate with page breaks, and each slide shows its own number in Present.</p>
+
+<h2 id="install">Install and offline use</h2>
+<p>When Simple Write is opened from a web address (https, or localhost), the browser can install it: in Chrome use the install icon in the address bar or <b>Install Simple Write</b> in the menu; on an iPhone or iPad use <b>Share ▸ Add to Home Screen</b>. After the first visit all the files are kept on the device, so the app opens and works with no Internet. Whenever there is a connection, the app checks for changed files each time it opens and uses the new ones, so updates arrive by themselves (reopen once to see them). Opening <code>index.html</code> straight from a folder works too, but cannot be installed.</p>
+
+<h2 id="slides">Slides</h2>
+<p>A document can be a slide show. In <b>Page and document setup</b> choose the paper <b>Screen 16:9</b> (or 4:3): the page becomes screen-shaped, with big type. Each page, up to the next page break (<kbd>Ctrl</kbd>+<kbd>Enter</kbd>), is one slide. A slide that holds only a heading and a line or two is centered as a title slide.</p>
+<p><b>View ▸ Present from the start</b> (<kbd>F5</kbd>) or <b>from this page</b> (<kbd>Shift</kbd>+<kbd>F5</kbd>) shows the slides full screen. Forward: <kbd>&rarr;</kbd>, <kbd>&darr;</kbd>, <kbd>Space</kbd>, <kbd>Enter</kbd>, <kbd>PageDown</kbd>. Back: <kbd>&larr;</kbd>, <kbd>&uarr;</kbd>, <kbd>Backspace</kbd>, <kbd>PageUp</kbd>. <kbd>Home</kbd> and <kbd>End</kbd> jump to the first and last slide, and <kbd>Esc</kbd> (or the &times; at the top right) ends the show. On a phone or tablet, swipe left or right, or tap the screen (the left third goes back). A slide that is too full is shrunk to fit.</p>
+<p>The <b>Slides</b> section of the setup dialog sets the background (plain, dark, navy, sepia, any color such as <code>#102a43</code>, or a picture chosen with <b>Choose picture&hellip;</b>; the picture is saved with the document, in its images folder or in the .zip), the transition between slides (fade, slide or none) and whether list items appear one at a time on each key press. The picture can fill the page (cropping the edges), fit whole inside it, or be stretched to it (<b>Picture fits the page</b>), and it can be faded toward dark or light so it does not overwhelm the text; the text color follows. A small sample below the settings shows the result with some text on it. <b>Reduce the picture's size</b> shrinks the picture to at most 1920 pixels on a side as a JPEG, for a smaller file; leave it off for logos and frames, which would lose sharpness. The settings are stored as <code>backgroundfit</code> (fill, fit, stretch) with the others below. They are stored in the front matter as <code>background</code>, <code>backgroundfade</code>, <code>transition</code> and <code>reveal: bullets</code>. The background is used in the show, not in print or Word files.</p>
+<p><b>View ▸ Slide sorter</b> shows every page (the text between two page breaks) as a thumbnail in the deck's look. Drag a thumbnail to move it (on a touch screen, drag the &#10303; grip beside its number). The buttons under each thumbnail add a blank page after it (+), duplicate it, or delete it. Double-click a page to close the sorter and go to it. <b>Done</b> or <kbd>Esc</kbd> applies the changes as a single step that <kbd>Ctrl</kbd>+<kbd>Z</kbd> undoes; <b>Cancel</b> discards them; <kbd>Ctrl</kbd>+<kbd>Z</kbd> inside the sorter undoes its last change. Videos and audio appear as labeled placeholders. Footnotes and numbered items renumber by their new position.</p>
+
+<h2 id="dictate">Dictation</h2>
+<p>Press the microphone button (or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Space</kbd>) and speak; press it again to stop. The words go where the cursor is: the document, the Markdown, or the AI prompt line. The first time, the browser asks to use the microphone.</p>
+<ul>
+  <li><b>The browser</b> (the usual choice): the words appear as you speak. It works in Chrome, Edge and Safari, not in Firefox, and needs an internet connection (the browser sends your voice to Google or Apple to recognize it). It uses your browser&rsquo;s language. In English you can say <i>period</i>, <i>comma</i>, <i>question mark</i>, <i>colon</i>, <i>new line</i> and <i>new paragraph</i>.</li>
+  <li><b>This AI provider</b> (choose it in <b>Set up AI</b>): Simple Write records while you speak and, when you stop, sends the recording to OpenAI, Gemini or your own Whisper server, which writes it out with punctuation, and with math as equations when you say formulas (&ldquo;q equals h A delta T&rdquo;). It costs a little per minute on your key.</li>
+</ul>
+<p><b>Speech from a recording:</b> <b>Insert &#9656; Speech from an audio file</b> writes out the speech in an .mp3, .m4a, .wav, .ogg or video file as normal text at the cursor (the audio itself is not inserted). It uses the AI provider from <b>Set up AI</b> (OpenAI, Gemini or a Whisper server), whatever the dictation setting. Long recordings are cut into pieces at quiet moments and the text arrives piece by piece; <kbd>Esc</kbd> stops. Your recording is sent to the provider, so use it only for audio you are allowed to share with them.</p>
+<p>Your computer may also have dictation of its own (on a Mac: press <kbd>Fn</kbd> twice, or <kbd>&#127760;</kbd>), which works in Simple Write too, and on newer Macs without the internet.</p>
+
+<h2 id="ai">The AI prompt line</h2>
+<p>The line at the bottom sends the document, or only the selected text, to an AI model together with what you type, for example <i>“Fix the grammar”</i>, <i>“Summarize in five bullet points”</i>, <i>“Turn this into a table”</i> or <i>“Check the units in these equations”</i>. The small label shows what will be sent: <b>Selection</b> or <b>Document</b>. If the document is empty, the AI writes from scratch. The menu next to <b>Send</b> says where the answer goes:</p>
+<ul>
+  <li><b>New tab</b>: a new Simple Write tab with the answer, leaving your document as it was (allow pop-ups for this page if the browser blocks it).</li>
+  <li><b>Replace</b>: the answer replaces the selection or the whole document. <kbd>Ctrl</kbd>+<kbd>Z</kbd> undoes it.</li>
+  <li><b>Insert below / Add at the end</b>: the answer goes after the selection, or at the end of the document.</li>
+</ul>
+<p>The text is sent as Markdown, so equations go as LaTeX and come back as equations. <kbd>Esc</kbd> or <b>Stop</b> stops a long answer; <kbd>&uarr;</kbd> brings back earlier instructions. <b>View ▸ AI prompt line</b> hides the line.</p>
+<p><b>Choosing the AI</b>: click the button at the left of the line (or <b>View ▸ AI provider and model</b>). Pick a provider, paste its API key, and type or pick a model from the list the provider sends. OpenAI, Anthropic (Claude), Google Gemini and OpenRouter need a key from their websites, and using them may cost money. <b>Ollama</b> runs free models on your own computer: install it from ollama.com, get a model (<code>ollama pull llama3.2</code>), and keep it running; if Simple Write cannot reach it, start Ollama with the environment variable <code>OLLAMA_ORIGINS=*</code>. <b>Other</b> works with any OpenAI-compatible server, such as LM Studio. Keys are kept only in this browser and sent only to their provider; don't save a key on a shared computer (<b>Forget</b> removes it).</p>
+<div class="note">AI answers can be wrong, even when they look right. Check them, especially math and numbers.</div>
+
+<h2 id="ainotes">Notes to the AI inside the text</h2>
+<p>You can write a request exactly where it applies, in the form <code>[ai: your request]</code>. The notes show in purple. <b>Insert ▸ Note to the AI</b> (<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd>) types one for you; with text selected, the selection becomes the request.</p>
+<ul>
+  <li><b>Carry them out:</b> leave the prompt line empty and press <b>Send</b> (the small label then says how many notes there are). The AI sees the whole document, so each note has its context, and returns text for each note. That text takes the place of the note, and nothing else in the document changes. The answer can go to a new tab or into this document (<kbd>Ctrl</kbd>+<kbd>Z</kbd> undoes it).</li>
+  <li><b>Use them as context:</b> if you do type an instruction in the prompt line, the notes in the text it sends are explained to the AI as your remarks about the nearby text, and it leaves them out of its answer.</li>
+</ul>
+<p>Examples: <code>[ai: explain this in two sentences]</code> on a line of its own, or inside a sentence, <code>Heat is [ai: the standard definition] and flows from hot to cold.</code> A note on its own line may be replaced by several paragraphs, a list, a table or an equation; one inside a sentence is replaced by inline text. Notes inside code and equations are ignored. A note is plain text in the Markdown file, so remove any that are left before you share the document.</p>
+
+<h2 id="paste">Copying and pasting</h2>
+<ul>
+  <li><b>Copy</b> from Simple Write puts two things on the clipboard: formatted text with Word-ready equations (MathML) for Word, email and other tabs, and Markdown for AI chats and plain-text editors.</li>
+  <li><b>File ▸ Copy all as Markdown</b> copies the whole document for an AI chat; <b>Copy all as formatted text</b> copies it for Word or an email.</li>
+  <li><b>Paste</b> converts formatted text from web pages, Word, Google Docs, AI chats and Simple Solver, equations included. Plain text is read as Markdown. <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> pastes plain text as it is.</li>
+</ul>
+
+<h2 id="keys">Keyboard shortcuts</h2>
+<table>
+  <tr><th>Keys</th><th>Action</th><th>Keys</th><th>Action</th></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>B</kbd> / <kbd>I</kbd> / <kbd>U</kbd></td><td>Bold, italic, underline</td><td><kbd>Ctrl</kbd>+<kbd>S</kbd></td><td>Save</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>=</kbd></td><td>Subscript</td><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></td><td>Save as</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd></td><td>Superscript</td><td><kbd>Ctrl</kbd>+<kbd>O</kbd></td><td>Open</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>`</kbd></td><td>Inline code</td><td><kbd>Ctrl</kbd>+<kbd>P</kbd></td><td>Print or PDF</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>Space</kbd></td><td>Clear formatting</td><td><kbd>Ctrl</kbd>+<kbd>H</kbd></td><td>Find and replace (<kbd>Ctrl</kbd>+<kbd>F</kbd> is the browser&rsquo;s find)</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>L</kbd> / <kbd>E</kbd> / <kbd>R</kbd> / <kbd>J</kbd></td><td>Left, center, right, justify</td><td><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Y</kbd></td><td>Undo, redo</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>1</kbd>&hellip;<kbd>6</kbd></td><td>Heading 1&hellip;6</td><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd></td><td>Normal paragraph</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd></td><td>Bulleted list</td><td><kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd></td><td>List level, or next/previous table cell</td></tr>
+  <tr><td><kbd>Alt</kbd>+<kbd>=</kbd></td><td>Equation</td><td><kbd>Ctrl</kbd>+<kbd>K</kbd></td><td>Link (<kbd>Ctrl</kbd>+click opens one)</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>F</kbd></td><td>Footnote</td><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>M</kbd></td><td>Comment</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>Enter</kbd></td><td>Page break</td><td><kbd>Ctrl</kbd>+<kbd>/</kbd></td><td>Document / Markdown view</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Space</kbd></td><td>Start or stop dictation</td><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>8</kbd></td><td>Show tabs and paragraph marks</td></tr>
+</table>
+<p>On a Mac, use <kbd>Cmd</kbd> instead of <kbd>Ctrl</kbd>.</p>
+
+<h2 id="markdown">What the Markdown looks like</h2>
+<p>Simple Write uses GitHub-flavored Markdown plus the conventions of <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="noopener">Pandoc</a> and pandoc-crossref for what plain Markdown lacks, so the files can also be turned into Word, PDF or LaTeX with Pandoc.</p>
+<pre>---
+numbersections: true            &lt;- page and document setup, at the top
+bibliography: references.bib
+---
+
+# Introduction {#sec:intro}
+
+Inline math $\dot{m} c_p \Delta T$ and a footnote[^1].
+
+$$
+q'' = -k \frac{dT}{dx}
+$$ {#eq:fourier}
+
+![Temperature profile](images/plot.png){#fig:profile width=50%}
+
+: Properties of air {#tbl:air}
+
+| Property | Value |
+|:--|--:|
+| $\rho$ | 1.2 |
+
+See @eq:fourier, @fig:profile and @tbl:air, as shown in [@incropera2007; @cengel2015].
+A {==sentence==}{>>Francisco: check this<<} with a comment.
+
+&lt;div align="center"&gt;
+
+A centered paragraph.
+
+&lt;/div&gt;
+
+&lt;!-- toc --&gt;
+&lt;!-- tocstop --&gt;
+
+[^1]: The footnote text.</pre>
+
+<h2 id="limits">What is left out, and why</h2>
+<p>Simple Write leaves out what Markdown cannot hold or what few people use: merged table cells, text boxes and shapes, mixing one and two columns on a page (columns are one setting for the whole document), per-paragraph tab stops (tab stops are for the whole document), sections with different page layouts, track changes, mail merge, macros, styles of your own, and per-paragraph line spacing (it is set for the whole document). Empty paragraphs are not kept in Markdown, so use spacing rather than blank lines.</p>
+<div class="note">Drafts are kept in this browser only. Save your documents to files, especially on shared or school computers.</div>
+
+<footer>© Francisco Ruiz 2026 · Simple Write uses KaTeX, marked, DOMPurify, Turndown, highlight.js, and JSZip.</footer>
+</body>
+</html>
